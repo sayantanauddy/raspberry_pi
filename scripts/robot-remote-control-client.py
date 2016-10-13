@@ -19,6 +19,7 @@ while(True):
     right = False
     forward = False
     backward = False
+    stop = False
             
     controller = gamepad.get()
     print controller
@@ -34,8 +35,11 @@ while(True):
     elif controller[1] > 0.9:
         backward = True
         msg = 'b'
-        
-    if left or right or forward or backward:
+    elif controller[5] == 1:
+        stop = True
+        msg = 's'
+     
+    if left or right or forward or backward or stop:
         s.send(msg.encode()) 
         data = ''
         data = s.recv(1024).decode()

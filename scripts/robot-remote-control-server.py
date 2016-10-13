@@ -72,7 +72,7 @@ class client(Thread):
                 GPIO.output(GPIO_LEFT_FORWARD, False)
                 GPIO.output(GPIO_RIGHT_FORWARD, True)
                 
-                GPIO.output(GPIO_LEFT_BACKWARD, True)
+                GPIO.output(GPIO_LEFT_BACKWARD, False)
                 GPIO.output(GPIO_RIGHT_BACKWARD, False) 
             
             elif client_msg_ascii == 'r':
@@ -82,7 +82,7 @@ class client(Thread):
                 GPIO.output(GPIO_RIGHT_FORWARD, False)
 
                 GPIO.output(GPIO_LEFT_BACKWARD, False)
-                GPIO.output(GPIO_RIGHT_BACKWARD, True)
+                GPIO.output(GPIO_RIGHT_BACKWARD, False)
 
 
             elif client_msg_ascii == 'f':
