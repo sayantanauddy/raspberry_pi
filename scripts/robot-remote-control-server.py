@@ -12,8 +12,8 @@ import sys
 # Handler for cleanup
 def signal_handler(signal, frame):
     print('You pressed Ctrl+C!')
-	# Reset GPIO settings
-	GPIO.cleanup()
+    # Reset GPIO settings
+    GPIO.cleanup()
     sys.exit(0)
 
 signal.signal(signal.SIGINT, signal_handler)
@@ -70,14 +70,21 @@ class client(Thread):
                 # Turn left
                 
                 GPIO.output(GPIO_LEFT_FORWARD, False)
-                GPIO.output(GPIO_RIGHT_FORWARD, False)
+                GPIO.output(GPIO_RIGHT_FORWARD, True)
                 
-                GPIO.output(GPIO_LEFT_BACKWARD, False)
+                GPIO.output(GPIO_LEFT_BACKWARD, True)
                 GPIO.output(GPIO_RIGHT_BACKWARD, False) 
             
             elif client_msg_ascii == 'r':
                 # Turn right
-            
+
+                GPIO.output(GPIO_LEFT_FORWARD, True)
+                GPIO.output(GPIO_RIGHT_FORWARD, False)
+
+                GPIO.output(GPIO_LEFT_BACKWARD, False)
+                GPIO.output(GPIO_RIGHT_BACKWARD, True)
+
+
             elif client_msg_ascii == 'f':
                 # Go forward
                 
@@ -98,14 +105,17 @@ class client(Thread):
             
             elif client_msg_ascii == 's':
                 # Stop
-            
-            
-            
-            
-            self.sock.send(b'Oi you sent something to me')
+
+                GPIO.output(GPIO_LEFT_BACKWARD, False)
+                GPIO.output(GPIO_RIGHT_BACKWARD, False)
+
+                GPIO.output(GPIO_LEFT_FORWARD, False)
+                GPIO.output(GPIO_RIGHT_FORWARD, False)
+
+            self.sock.send(b'Command received')
 
 serversocket.listen(5)
 print ('server started and listening')
-while 1:
+while True:
     clientsocket, address = serversocket.accept()
     client(clientsocket, address)
