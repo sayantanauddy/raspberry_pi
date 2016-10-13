@@ -1,7 +1,4 @@
 
-import gamepad
-import socket
-
 ''' Author - Sayantan Auddy'''
 
 ''' Client script - Run a while loop, continuously checking for events from the game controller.
@@ -15,6 +12,9 @@ import socket
     
     Game controller code derived from http://yameb.blogspot.de/2013/01/gamepad-input-in-python.html
 '''
+
+import gamepad
+import socket
 
 s= socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 host = '192.168.0.102' #ip of raspberry pi (server)
