@@ -17,7 +17,7 @@ import gamepad
 import socket
 
 s= socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-host = '192.168.0.102' #ip of raspberry pi (server)
+host = '192.168.0.103' #ip of raspberry pi (server)
 port = 12346
 s.connect((host,port))
 
