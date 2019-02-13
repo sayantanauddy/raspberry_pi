@@ -5,7 +5,7 @@ from threading import *
 
 
 serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-host = "192.168.0.104"
+host = "192.168.0.102"
 port = 12346
 print (host)
 print (port)
